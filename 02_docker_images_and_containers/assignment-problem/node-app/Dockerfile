@@ -1,4 +1,5 @@
 FROM node:latest
+
 LABEL authors="Francisco Oro"
 
 WORKDIR app/
