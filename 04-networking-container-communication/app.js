@@ -32,7 +32,6 @@ app.post('/favorites', async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
-sadaasdsd
   const favorite = new Favorite({
     name: favName,
     type: favType,
@@ -69,7 +68,7 @@ app.get('/people', async (req, res) => {
 
 
 mongoose.connect(
-  'mongodb://host.docker.internal:27017/swfavorites',
+  'mongodb://mongodb:27017/swfavorites',
   { useNewUrlParser: true },
   (err) => {
     if (err) {
