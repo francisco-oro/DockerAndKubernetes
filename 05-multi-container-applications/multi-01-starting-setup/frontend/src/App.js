@@ -37,7 +37,6 @@ function App() {
 
   async function addGoalHandler(goalText) {
     setIsLoading(true);
-
     try {
       const response = await fetch('http://localhost/goals', {
         method: 'POST',
