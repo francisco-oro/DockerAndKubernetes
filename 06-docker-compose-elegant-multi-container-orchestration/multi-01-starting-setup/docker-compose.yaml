@@ -1,4 +1,4 @@
-version: "3.8"
+version: "4.8"
 services:
   mongodb:
     image: 'mongo'
@@ -11,9 +11,35 @@ services:
 #      MONGO_INITDB_ROOT_PASSWORD: secret
 #      - MONGO_INITDB_ROOT_USERNAME=root
 
-#  backend:
+  backend:
+    build: ./backend
+#    build:
+#      context: ./backend
+#      dockerfile: Dockerfile
+#      args:
+#        some-arg: 1
+    ports:
+      - '80:80'
+    volumes:
+      - logs:/backend/logs
+      - /backend/node_modules
+      - ./backend:/app
+    env_file:
+      - ./env/backend.env
+    depends_on:
+      - mongodb
 
-#  frontend:
+  frontend:
+    build: ./frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend/src:/frontend/src
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
 
 volumes:
   data:
+  logs:
