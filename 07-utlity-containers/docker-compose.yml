@@ -1,0 +1,9 @@
+version: "5.9"
+
+services:
+  npm:
+    build: ./
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./:/app
