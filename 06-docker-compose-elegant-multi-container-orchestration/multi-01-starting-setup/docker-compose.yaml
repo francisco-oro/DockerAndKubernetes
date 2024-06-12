@@ -4,6 +4,7 @@ services:
     image: 'mongo'
     volumes:
       - data:/data/db
+    container_name: mongodb
     env_file:
       - ./env/mongo.env
 #    environment:
