@@ -63,7 +63,7 @@ app.post('/goals', async (req, res) => {
 });
 
 app.delete('/goals/:id', async (req, res) => {
-  console.log('TRYING TO DELETE GOAL');
+  console.log('TRYING TO DELETE GOALS!');
   try {
     await Goal.deleteOne({ _id: req.params.id });
     res.status(200).json({ message: 'Deleted goal!' });
@@ -75,8 +75,10 @@ app.delete('/goals/:id', async (req, res) => {
   }
 });
 
+let url = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_URL}?retryWrites=true&w=majority&appName=Cluster0`;
+console.log(url);
 mongoose.connect(
-  `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_URL}:27017/course-goals?authSource=admin`,
+    url,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
